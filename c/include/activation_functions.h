@@ -1,14 +1,11 @@
 #ifndef ACTIVATION_FUNCTIONS_H
 #define ACTIVATION_FUNCTIONS_H
 
-typedef float activation_function_t(float weights_sum);
-/*
-typedef activation_function_t binary_step_function;
-typedef activation_function_t linear_function;
-typedef activation_function_t sigmoid_function;
-typedef activation_function_t tanh_function;
-typedef activation_function_t relu_function;
-typedef activation_function_t relu_leaky_function;
-typedef activation_function_t softmax_function;
-*/
+float binary_step_function(float x);
+float linear_function(float x);
+float sigmoid_function(float x);
+float tanh_function(float x);
+float relu_function(float x);
+float relu_leaky_function(float x);
+
 #endif /* ACTIVATION_FUNCTIONS_H */

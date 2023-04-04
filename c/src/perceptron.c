@@ -1,20 +1,25 @@
 #include "perceptron.h"
 
-
-perceptron_t init_perceptron(connections_t *connections, activation_function_t *activation_function) {
+perceptron_t init_perceptron(float bias, float (*activation_function)(float), connections_t *connections) {
     perceptron_t perceptron = {
-        .bias = 0.f,
+        .bias = bias,
         .output = 0.f,
         .activation_function = activation_function,
         .input_connections = connections
     };
+
+    return perceptron;
 }
 
 void process_perceptron(perceptron_t *perceptron) {
+    // apply bias
     float total_weights = perceptron->bias;
+
+    // sum up weighted output values from connect perceptrons 
     for(uint32_t i = 0; i < perceptron->input_connections->count; i++) {
         total_weights += *(perceptron->input_connections->connection_result_ptrs[i]) * perceptron->input_connections->weight_list[i];
     }
 
-    perceptron->output = perceptron->activation_function(total_weights);
+    // execute activation function
+    perceptron->output = (*perceptron->activation_function)(total_weights);
 }

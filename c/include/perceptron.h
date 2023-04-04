@@ -12,7 +12,7 @@ typedef struct {
 
 typedef struct {
     float bias;
-    activation_function_t *activation_function;
+    float (*activation_function)(float);
     connections_t *input_connections;
     float output;
 } perceptron_t;
@@ -22,7 +22,7 @@ typedef struct {
     float output;
 } input_node_t, output_node_t;
 
-perceptron_t init_perceptron(connections_t *connections, activation_function_t *activation_function);
+perceptron_t init_perceptron(float bias, float (*activation_function)(float), connections_t *connections);
 
 void process_perceptron(perceptron_t *perceptron);
 
